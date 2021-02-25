@@ -1,0 +1,68 @@
+﻿@page
+@model MusicRecommendations.Pages.Recommendations.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+
+<form>
+    <p>
+        @*<select asp-for="Artists" asp-items="Model.Artists">
+        <option value="">All</option>
+        </select>*@
+        <select asp-for="MusicGenre" asp-items="Model.Genres">
+        <option value="">All</option>
+        </select>
+        Title: <input type="text" asp-for="SearchString" />
+        <input type="submit" value="Filter" />
+    </p>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.MusicModel[0].SongName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MusicModel[0].AlbumName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MusicModel[0].ArtistName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MusicModel[0].isRecommended)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.MusicModel) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.SongName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AlbumName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ArtistName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.isRecommended)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

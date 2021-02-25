@@ -1,0 +1,55 @@
+﻿@page
+@model MusicRecommendations.Pages.Recommendations.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>MusicModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="MusicModel.Id" />
+            <div class="form-group">
+                <label asp-for="MusicModel.SongName" class="control-label"></label>
+                <input asp-for="MusicModel.SongName" class="form-control" />
+                <span asp-validation-for="MusicModel.SongName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MusicModel.AlbumName" class="control-label"></label>
+                <input asp-for="MusicModel.AlbumName" class="form-control" />
+                <span asp-validation-for="MusicModel.AlbumName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MusicModel.ArtistName" class="control-label"></label>
+                <input asp-for="MusicModel.ArtistName" class="form-control" />
+                <span asp-validation-for="MusicModel.ArtistName" class="text-danger"></span>
+            </div>
+             <div class="form-group">
+                <label asp-for="MusicModel.Genre" class="control-label"></label>
+                <input asp-for="MusicModel.Genre" class="form-control" />
+                <span asp-validation-for="MusicModel.Genre" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="MusicModel.isRecommended" /> @Html.DisplayNameFor(model => model.MusicModel.isRecommended)
+                </label>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
