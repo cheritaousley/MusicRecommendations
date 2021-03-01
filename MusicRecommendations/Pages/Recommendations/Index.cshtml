@@ -36,8 +36,14 @@
             <th>
                 @Html.DisplayNameFor(model => model.MusicModel[0].ArtistName)
             </th>
+              <th>
+                @Html.DisplayNameFor(model => model.MusicModel[0].Genre)
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.MusicModel[0].isRecommended)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MusicModel[0].Price)
             </th>
             <th></th>
         </tr>
@@ -55,7 +61,13 @@
                 @Html.DisplayFor(modelItem => item.ArtistName)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.Genre)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.isRecommended)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
             </td>
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |

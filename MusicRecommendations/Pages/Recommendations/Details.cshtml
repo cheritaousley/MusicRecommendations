@@ -29,11 +29,23 @@
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.MusicModel.ArtistName)
         </dd>
+         <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.MusicModel.Genre)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.MusicModel.Genre)
+        </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.MusicModel.isRecommended)
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.MusicModel.isRecommended)
+        </dd>
+         <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.MusicModel.Price)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.MusicModel.Price)
         </dd>
     </dl>
 </div>

@@ -28,8 +28,8 @@ namespace MusicRecommendations.Pages.Recommendations
         public SelectList Genres { get; set; }
 
         public string ArtistName { get; set; }
-        [BindProperty(SupportsGet = true)]
 
+        [BindProperty(SupportsGet = true)]
         public string MusicGenre { get; set; }
         public async Task OnGetAsync()
         {

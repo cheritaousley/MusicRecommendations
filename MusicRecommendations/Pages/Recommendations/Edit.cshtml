@@ -34,6 +34,11 @@
                 <input asp-for="MusicModel.Genre" class="form-control" />
                 <span asp-validation-for="MusicModel.Genre" class="text-danger"></span>
             </div>
+             <div class="form-group">
+                <label asp-for="MusicModel.Price" class="control-label"></label>
+                <input asp-for="MusicModel.Price" class="form-control" />
+                <span asp-validation-for="MusicModel.Price" class="text-danger"></span>
+            </div>
             <div class="form-group form-check">
                 <label class="form-check-label">
                     <input class="form-check-input" asp-for="MusicModel.isRecommended" /> @Html.DisplayNameFor(model => model.MusicModel.isRecommended)

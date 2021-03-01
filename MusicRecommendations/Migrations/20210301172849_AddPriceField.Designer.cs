@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MusicRecommendations.Data;
 
 namespace MusicRecommendations.Migrations
 {
     [DbContext(typeof(MusicRecommendationsContext))]
-    partial class MusicRecommendationsContextModelSnapshot : ModelSnapshot
+    [Migration("20210301172849_AddPriceField")]
+    partial class AddPriceField
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
