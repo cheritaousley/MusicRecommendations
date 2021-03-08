@@ -22,7 +22,7 @@ namespace MusicRecommendations.Pages
 
         public void OnGet()
         {
-            AllRecommendations= new RecommendationServices().GetRecommendations();
+            // AllRecommendations= new RecommendationServices().GetRecommendations();
         }
     }
 }

@@ -14,37 +14,47 @@ namespace MusicRecommendations
     [ApiController]
     public class MusicRecommendationsController : ControllerBase
     {
+        private readonly MusicRecommendations.Data.MusicRecommendationsContext _context;
+
+        public MusicRecommendationsController(MusicRecommendations.Data.MusicRecommendationsContext context)
+        {
+            _context = context;
+        }
+
         // GET: api/<ValuesController>
         [HttpGet]
-        public IEnumerable<MusicModel> Get()
+        public async Task<IEnumerable<MusicModel>> Get()
         {
-            return new RecommendationServices().GetRecommendations();
+            return await new RecommendationServices().GetRecommendations(_context, null, null);
 
         }
 
         // GET api/<ValuesController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public async Task<MusicModel> Get(int id)
         {
-            return "value";
+            return await new RecommendationServices().GetSingleRecommendation(_context, id);
         }
 
         // POST api/<ValuesController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public async Task<MusicModel> Post([FromBody] string value)
         {
+            return (MusicModel)await new RecommendationServices().CreateRecommendation(_context);
         }
 
         // PUT api/<ValuesController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public async Task<MusicModel> Put(int id, [FromBody] string value)
         {
+            return await new RecommendationServices().UpdateRecommendation(_context, id);
         }
 
         // DELETE api/<ValuesController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task<MusicModel> Delete(int id)
         {
+            return await new RecommendationServices().DeleteRecommendation(_context, id);
         }
     }
 }

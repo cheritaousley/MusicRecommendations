@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MusicRecommendations.Data;
 using MusicRecommendations.Models;
+using MusicRecommendations.Services;
 
 namespace MusicRecommendations.Pages.Recommendations
 {
@@ -42,25 +43,10 @@ namespace MusicRecommendations.Pages.Recommendations
             IQueryable<string> genreQuery = from m in _context.MusicModel
                                             orderby m.Genre
                                             select m.Genre;
-
-            var musicRecs = from m in _context.MusicModel
-                         select m;
-            if (!string.IsNullOrEmpty(SearchString))
-            {
-                musicRecs = musicRecs.Where(s => s.SongName.Contains(SearchString));
-            }
-            //if (!string.IsNullOrEmpty(ArtistName))
-            //{
-            //    musicRecs = musicRecs.Where(x => x.ArtistName == ArtistName);
-            //}
-            if (!string.IsNullOrEmpty(MusicGenre))
-            {
-                musicRecs = musicRecs.Where(x => x.Genre == MusicGenre);
-            }
             Genres = new SelectList(await genreQuery.Distinct().ToListAsync());
-            //Artists = new SelectList(await artistQuery.Distinct().ToListAsync());
 
-            MusicModel = await _context.MusicModel.ToListAsync();
+            MusicModel = await new RecommendationServices().GetRecommendations(_context, SearchString, MusicGenre);
         }
+
     }
 }
