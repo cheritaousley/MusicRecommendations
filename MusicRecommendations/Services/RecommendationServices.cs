@@ -39,34 +39,39 @@ namespace MusicRecommendations.Services
 
         }
 
-        public async Task<IList<MusicModel>> CreateRecommendation(Data.MusicRecommendationsContext context)
+        public async Task<IList<MusicModel>> CreateRecommendation(Data.MusicRecommendationsContext context, MusicModel newRecommendation)
         {
             // want to check if it already exists by song name
-            var musicRecs = from m in context.MusicModel
-                            select m;
-            var hs = new HashSet<string>();
-            bool recommendationIsUnique = musicRecs.All(x => hs.Add(x.SongName));
-           // bool isUnique = musicRecs.Distinct().Count() == musicRecs.Count();
-            if (recommendationIsUnique)
+            
+            bool recommendationExists = context.MusicModel.Any(x => x.SongName == newRecommendation.SongName);
+         
+            if (!recommendationExists)
             {
-                context.Add(hs);
-                // context.SaveChanges();
-             await context.SaveChangesAsync();// why can't I return this
+                context.Add(newRecommendation);
+                await context.SaveChangesAsync();
             }
-            return await musicRecs.ToListAsync();
+            return await context.MusicModel.ToListAsync();
         }
 
-        public async Task<MusicModel> UpdateRecommendation(Data.MusicRecommendationsContext context, int id)
+        public async Task<MusicModel> UpdateRecommendation(Data.MusicRecommendationsContext context, int id, MusicModel updatedRecommendation)
         {
-            var song = from s in context.MusicModel
+            var songQuery = from s in context.MusicModel
                        where s.Id == id
                        select s;
-            context.Update(id);
+            var song = await songQuery.SingleAsync();
+            // look at each field from this id and update any field that is being edited by user
+            song.SongName = updatedRecommendation.SongName;
+            song.AlbumName = updatedRecommendation.AlbumName;
+            song.ArtistName = updatedRecommendation.ArtistName;
+            song.Genre = updatedRecommendation.Genre;
+            song.Price = updatedRecommendation.Price;
+            song.isRecommended = updatedRecommendation.isRecommended;
+
             await context.SaveChangesAsync();
-            return await song.SingleAsync();
+            return song;
         }
 
-        public async Task<MusicModel> DeleteRecommendation(Data.MusicRecommendationsContext context, int id)
+        public async Task<IList<MusicModel>> DeleteRecommendation(Data.MusicRecommendationsContext context, int id)
         {
             var song = from s in context.MusicModel
                        where s.Id == id
@@ -74,7 +79,8 @@ namespace MusicRecommendations.Services
             context.Remove(id);
             // context.SaveChanges();
             await context.SaveChangesAsync();
-            return await song.SingleAsync();
+            // return new list without the deleted song
+            return await context.MusicModel.ToListAsync();
         }
     }
 }

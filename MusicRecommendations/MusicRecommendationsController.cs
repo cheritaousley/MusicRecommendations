@@ -38,21 +38,21 @@ namespace MusicRecommendations
 
         // POST api/<ValuesController>
         [HttpPost]
-        public async Task<MusicModel> Post([FromBody] string value)
+        public async Task<IList<MusicModel>> Post([FromBody] MusicModel newRecommendation)
         {
-            return (MusicModel)await new RecommendationServices().CreateRecommendation(_context);
+            return await new RecommendationServices().CreateRecommendation(_context, newRecommendation);
         }
 
         // PUT api/<ValuesController>/5
         [HttpPut("{id}")]
-        public async Task<MusicModel> Put(int id, [FromBody] string value)
+        public async Task<MusicModel> Put(int id, [FromBody] MusicModel updatedRecommendation)
         {
-            return await new RecommendationServices().UpdateRecommendation(_context, id);
+            return await new RecommendationServices().UpdateRecommendation(_context, id, updatedRecommendation);
         }
 
         // DELETE api/<ValuesController>/5
         [HttpDelete("{id}")]
-        public async Task<MusicModel> Delete(int id)
+        public async Task<IList<MusicModel>> Delete(int id)
         {
             return await new RecommendationServices().DeleteRecommendation(_context, id);
         }
