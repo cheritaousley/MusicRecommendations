@@ -9,7 +9,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using MusicRecommendations.Data; 
+using MusicRecommendations.Data;
+
+using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 
 namespace MusicRecommendations
 {
@@ -29,6 +31,12 @@ namespace MusicRecommendations
 
             services.AddDbContext<MusicRecommendationsContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("MusicRecommendationsContext")));
+
+            // In production, the React files will be served from this directory
+            services.AddSpaStaticFiles(configuration =>
+            {
+                configuration.RootPath = "musicrecommendationsreact/build";
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -57,6 +65,17 @@ namespace MusicRecommendations
                 endpoints.MapRazorPages();
                 endpoints.MapControllers();
             });
+
+            app.UseSpa(spa =>
+            {
+                spa.Options.SourcePath = "musicrecommendationsreact";
+
+                if (env.IsDevelopment())
+                {
+                    spa.UseReactDevelopmentServer(npmScript: "start");
+                }
+            });
+
         }
     }
 }
