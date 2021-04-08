@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\chousley\\source\\repos\\MusicRecommendations\\MusicRecommendations\\MusicRecommendations.csproj": {}
+    "C:\\Users\\chousley\\source\\repos\\MusicRecommendations\\MusicRecommendationsApi\\MusicRecommendations.csproj": {}
   },
   "projects": {
-    "C:\\Users\\chousley\\source\\repos\\MusicRecommendations\\MusicRecommendations\\MusicRecommendations.csproj": {
+    "C:\\Users\\chousley\\source\\repos\\MusicRecommendations\\MusicRecommendationsApi\\MusicRecommendations.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\chousley\\source\\repos\\MusicRecommendations\\MusicRecommendations\\MusicRecommendations.csproj",
+        "projectUniqueName": "C:\\Users\\chousley\\source\\repos\\MusicRecommendations\\MusicRecommendationsApi\\MusicRecommendations.csproj",
         "projectName": "MusicRecommendations",
-        "projectPath": "C:\\Users\\chousley\\source\\repos\\MusicRecommendations\\MusicRecommendations\\MusicRecommendations.csproj",
+        "projectPath": "C:\\Users\\chousley\\source\\repos\\MusicRecommendations\\MusicRecommendationsApi\\MusicRecommendations.csproj",
         "packagesPath": "C:\\Users\\chousley\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\chousley\\source\\repos\\MusicRecommendations\\MusicRecommendations\\obj\\",
+        "outputPath": "C:\\Users\\chousley\\source\\repos\\MusicRecommendations\\MusicRecommendationsApi\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -43,6 +43,10 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "dependencies": {
+            "Microsoft.AspNetCore.SpaServices.Extensions": {
+              "target": "Package",
+              "version": "[3.1.13, )"
+            },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
               "version": "[3.1.12, )"
